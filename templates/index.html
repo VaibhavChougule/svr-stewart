@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stewart Platform</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            /* Prevent scrolling */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            /* grid-column: 1 / 4; */
+            display: flex;
+            height: 60px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            /* padding: 10px 0; */
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            /* margin: 2px; */
+
+        }
+
+        /* Header Section */
+
+        .header h1 {
+            display: inline;
+            background-color: rgb(88, 80, 61);
+            padding: 2px;
+            border-radius: 10px;
+        }
+
+        .header p {
+            display: inline;
+        }
+
+
+        /* Main container */
+        .main-container {
+            flex: 1;
+
+            width: 100%;
+
+            background-color: antiquewhite;
+            display: flex;
+        }
+
+        .left {
+            flex: 2;
+        }
+
+        .right {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+
+        .plus {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+
+            max-width: 30%;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .ActuatorControl {
+            margin: 20px;
+        }
+
+
+        #plot-div {
+            /* flex: 1; */
+            /* margin: 20px; */
+            /* max-width: 30%; */
+            /* margin: 0px; */
+            /* padding: 20px; */
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+
+        }
+
+
+
+
+        .section {
+            flex: 1;
+
+            background: #eaeaea;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .section h3 {
+            margin-top: 0;
+        }
+
+        .slider {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .slider input[type="range"] {
+            width: 70%;
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .control-buttons button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .control-buttons .on {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .control-buttons .off {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .feedback {
+            text-align: center;
+        }
+
+        .feedback img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        /* .axis-trajectory table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        } */
+
+        /* .axis-trajectory table,
+        .axis-trajectory th,
+        .axis-trajectory td {
+            border: 1px solid #ccc;
+        }
+
+        .axis-trajectory th,
+        .axis-trajectory td {
+            padding: 8px;
+        }
+
+        .axis-trajectory input {
+            width: 80%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        } */
+
+        button {
+            background-color: #4caf50;
+            height: 20px;
+            width: 50px;
+        }
+
+        .plus2 {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            padding: 10px;
+            justify-content: space-around;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: 5px;
+
+        }
+
+        .plus2 div {
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .table-container {
+            border: 1px solid black;
+            /* Outer border */
+            border-collapse: collapse;
+            /* Collapse cell borders */
+            /*margin: 20px auto;  Center the table */
+            width: 100%;
+            align-items: center;
+            /* Adjust width to content */
+        }
+
+        .table-title {
+            text-align: center;
+            font-weight: bold;
+            padding: 8px;
+            border-bottom: 1px solid black;
+        }
+
+        .axis-table {
+            width: 100%;
+            border-collapse: collapse;
+            /* Collapse cell borders */
+        }
+
+        .axis-table th,
+        .axis-table td {
+            border: 1px solid black;
+            /* Cell borders */
+            padding: 8px;
+            /* Add some padding to cells */
+            text-align: center;
+            /* Center text in cells */
+        }
+
+        .axis-table th {
+            font-weight: normal;
+            /* Make headers normal weight */
+        }
+
+        .plus3 {
+            padding: 10px;
+            border: 1px black solid;
+            margin: 5px;
+            border-radius: 10px;
+        }
+
+        .teach {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            border-radius: 5px;
+            border: black 2px solid;
+        }
+
+        .teach h1 {
+            border: 1px black solid;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: darkgray;
+        }
+
+        .teach h3 {
+            border: 1px black solid;
+            padding: 5px;
+            border-radius: 5px;
+            width: 50px;
+        }
+        .teach input{
+            text-align: center;
+            height: 40px;
+            width: 60px;
+            background-color: aquamarine;
+        }
+
+        .logsIn {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .logs {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logs2 {
+            display: flex;
+
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider2 {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider2:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider2 {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider2 {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider2:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider2.round {
+            border-radius: 34px;
+        }
+
+        .slider2.round:before {
+            border-radius: 50%;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-container :nth-child(2) {
+            padding: 10px;
+            margin: 5px;
+            flex: 1;
+            /* background-color: darkgrey; */
+
+        }
+
+        .slider-container :nth-child(1) {
+            flex: 1;
+            width: 180px;
+            padding: 10px;
+            margin: 5px;
+            background-color: darkgrey;
+            border-radius: 5px;
+
+
+        }
+
+        .slider-container :nth-child(3) {
+            flex: 1;
+        }
+
+        .social {
+            height: 80px;
+            width: 80px;
+            border: 1px black solid;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <p>By SVR Robotics Pvt Ltd</p>
+        <h1>Stewart Platform</h1>
+        <p>IP Address: 192.168.137.120:5000</p>
+    </div>
+
+
+
+
+
+    <div class="main-container">
+        <div class="left">
+            <div class="plus">
+                <div class="container">
+                    <!-- Main Control Section -->
+                    <div class="main-control">
+                        <div>
+                            <h3>Axis jogging</h3>
+                            <form id="control-form">
+                                <div class="slider-container">
+                                    <label class="slider-label" for="offset_x">Offset X:</label>
+                                    <input type="range" id="offset_x" name="offset_x" min="-0.2" max="0.2" step="0.01"
+                                        value="0">
+                                    <span id="offset_x_value">0</span>
+                                </div>
+                                <div class="slider-container">
+                                    <label class="slider-label" for="offset_y">Offset Y:</label>
+                                    <input type="range" id="offset_y" name="offset_y" min="-0.2" max="0.2" step="0.01"
+                                        value="0">
+                                    <span id="offset_y_value">0</span>
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            <form id="control-form-2">
+                                <div class="slider-container">
+                                    <label class="slider-label" for="offset_z">Offset Z:</label>
+                                    <input type="range" id="offset_z" name="offset_z" min="0" max="2" step="0.1"
+                                        value="0">
+                                    <span id="offset_z_value">0</span>
+                                </div>
+                                <div class="slider-container">
+                                    <label class="slider-label" for="rotation">Rotation (°):</label>
+                                    <input type="range" id="rotation" name="rotation" min="0" max="360" step="5"
+                                        value="0">
+                                    <span id="rotation_value">0</span>
+                                </div>
+                            </form>
+                            <form id="control-form-3">
+                                <div class="slider-container">
+                                    <label class="slider-label" for="offset_z">P Axis:</label>
+                                    <input type="range" id="offset_p" name="offset_z" min="0" max="2" step="0.1"
+                                        value="0">
+                                    <span id="offset_z_value">0</span>
+                                </div>
+                                <div class="slider-container">
+                                    <label class="slider-label" for="rotation">Yy axis:</label>
+                                    <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5"
+                                        value="0">
+                                    <span id="rotation_value">0</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Actuator Control Section -->
+                <div class="section ActuatorControl">
+                    <h3>Actuator Control</h3>
+                    <!-- <div class="slider"><label>ACT 1</label><input type="range" min="0" max="100" value="50"></div>
+                <div class="slider"><label>ACT 2</label><input type="range" min="0" max="100" value="50"></div>
+                <div class="slider"><label>ACT 3</label><input type="range" min="0" max="100" value="50"></div>
+                <div class="slider"><label>ACT 4</label><input type="range" min="0" max="100" value="50"></div>
+                <div class="slider"><label>ACT 5</label><input type="range" min="0" max="100" value="50"></div>
+                <div class="slider"><label>ACT 6</label><input type="range" min="0" max="100" value="50"></div>
+                 -->
+                    <div class="slider-container">
+                        <label class="slider-label" for="rotation">ACT 1:</label>
+                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
+                        <span id="rotation_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="rotation">ACT 1:</label>
+                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
+                        <span id="rotation_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="rotation">ACT 1:</label>
+                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
+                        <span id="rotation_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="rotation">ACT 1:</label>
+                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
+                        <span id="rotation_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="rotation">ACT 1:</label>
+                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
+                        <span id="rotation_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="rotation">ACT 1:</label>
+                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
+                        <span id="rotation_value">0</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="plus2">
+                <div style="background-color: #55a944; border: 1px black solid;">
+                    <h3>Drill Gun Control</h3>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider2 round"></span>
+                    </label>
+
+                    <!-- <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label> -->
+                </div>
+                <div style="background-color: #3d9e76; border: 1px black solid;">
+                    <h3>Joystick Control</h3>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider2 round"></span>
+                    </label>
+                </div>
+
+            </div>
+            <div class="plus3">
+                <div class="teach">
+                    <h1>Teach Stewart Platform</h1>
+                    <input type="number" placeholder="From"></input>
+                    <input type="number" placeholder="To"></input>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider2 round"></span>
+                    </label>
+                </div>
+                <div class="logs">
+                    <div class="logsIn">
+                        <h2>ERROR LOGS: </h2>
+                        <p style="color: green; font-weight: bolder;">HEALTHY</p>
+                    </div>
+                    <div class="logs2">
+                        <div class="social"></div>
+                        <div class="social"></div>
+                        <div class="social"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="right">
+            <div id="plot-div">
+                {{ plot_div | safe }}
+            </div>
+
+            <div class="table-container" style="background-color:rgb(133, 133, 169)">
+                <div class="table-title">AXIS TRAJECTORY</div>
+                <table class="axis-table">
+                    <!-- <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        <tr>
+                            <td>x</td>
+                            <td></td>
+                            <td>Roll</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>y</td>
+                            <td></td>
+                            <td>Pitch</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>z</td>
+                            <td></td>
+                            <td>Yaw</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <script>
+        // Update slider values in real time
+        $("input[type='range']").on("input", function () {
+            let id = $(this).attr("id");
+            $("#" + id + "_value").text($(this).val());
+        });
+
+        // Handle form changes and send AJAX request
+        $("#control-form input, #control-form-2 input").on("input", function () {
+            // Gather form data
+            let formData = $(this).closest("form").serialize();
+
+            // Send AJAX POST request
+            $.post("/update_plot", formData, function (data) {
+                // Replace the plot with the updated one
+                $("#plot-div").html(data.plot_html);
+            });
+        });
+    </script>
+</body>
+
+</html>
