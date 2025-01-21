@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stewart Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         * {
@@ -73,7 +74,7 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 0px;
         }
 
 
@@ -84,11 +85,10 @@
         }
 
         .container {
-            display: flex;
             flex: 1;
-
-            max-width: 30%;
-            margin: 20px;
+            display: flex;
+            /* max-width: 30%; */
+            margin: 5px;
             padding: 20px;
             background-color: #fff;
             border: 2px solid #ccc;
@@ -96,7 +96,7 @@
         }
 
         .ActuatorControl {
-            margin: 20px;
+            margin: 5px;
         }
 
 
@@ -118,7 +118,7 @@
         .section {
             flex: 1;
 
-            background: #eaeaea;
+            background: #ffffff;
             padding: 15px;
             border-radius: 5px;
         }
@@ -210,6 +210,7 @@
             border: 2px solid black;
             border-radius: 5px;
             margin: 5px;
+            background-color: aliceblue;
 
         }
 
@@ -219,14 +220,20 @@
         }
 
         .table-container {
-            border: 1px solid black;
+            /* border: 1px solid black; */
             /* Outer border */
             border-collapse: collapse;
             /* Collapse cell borders */
             /*margin: 20px auto;  Center the table */
             width: 100%;
+            display: flex;
             align-items: center;
+            justify-content: center;
             /* Adjust width to content */
+        }
+
+        .table-container2 {
+            width: 95%;
         }
 
         .table-title {
@@ -259,18 +266,21 @@
 
         .plus3 {
             padding: 10px;
-            border: 1px black solid;
+            /* border: 1px black solid; */
             margin: 5px;
             border-radius: 10px;
+            background-color: aliceblue;
         }
 
         .teach {
             display: flex;
             gap: 10px;
             align-items: center;
+            justify-content: space-around;
             border-radius: 5px;
-            border: black 2px solid;
+            /* border: black 2px solid; */
         }
+
 
         .teach h1 {
             border: 1px black solid;
@@ -285,16 +295,51 @@
             border-radius: 5px;
             width: 50px;
         }
-        .teach input{
+
+        .teach input {
             text-align: center;
             height: 40px;
             width: 60px;
-            background-color: aquamarine;
+            border-radius: 10px;
+            background-color: rgb(205, 205, 205);
+        }
+
+        #teach1 {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        #teach2 {
+            display: flex;
+            gap: 20px;
+        }
+
+        #nc {
+            width: 100px;
+            height: 1.6rem;
+            border-radius: 5px;
+        }
+
+        #pc {
+            width: 100px;
+            height: 1.6rem;
+            border-radius: 5px;
+        }
+
+        #nc:hover {
+            background-color: yellowgreen;
+        }
+
+        #pc:hover {
+            background-color: yellowgreen;
         }
 
         .logsIn {
             display: flex;
             align-items: center;
+            gap: 10px;
+            justify-content: space-between;
 
         }
 
@@ -400,17 +445,164 @@
         .social {
             height: 80px;
             width: 80px;
-            border: 1px black solid;
+            /* border: 1px black solid; */
             border-radius: 50%;
+        }
+
+        #calibration {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .crosshair-button {
+            width: 60px;
+            height: 60px;
+            border: 2px solid black;
+            border-radius: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .crosshair-button::before,
+        .crosshair-button::after {
+            content: "";
+            position: absolute;
+            background-color: black;
+        }
+
+        /* Vertical Line */
+        .crosshair-button::before {
+            width: 2px;
+            height: 70%;
+        }
+
+        /* Horizontal Line */
+        .crosshair-button::after {
+            width: 70%;
+            height: 2px;
+        }
+
+        .outer-circle {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            border: 2px solid black;
+            border-radius: 50%;
+        }
+
+        .inner-circle {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            border: 2px solid black;
+            border-radius: 50%;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .connect-button,
+        .disconnect-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+        }
+
+        .connect-button {
+            background-color: yellowgreen;
+        }
+
+        .disconnect-button {
+            background-color: red;
+        }
+
+        .connect-button svg,
+        .disconnect-button svg {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+        }
+
+        .connect-label,
+        .disconnect-label {
+            text-align: center;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .connect-label {
+            color: yellowgreen;
+            font-weight: bolder;
+        }
+
+        .disconnect-label {
+            color: red;
+        }
+
+        #soc {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        #soc2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .media {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            gap: 5px;
+        }
+
+        .xyz {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .both {
+            background-color: red;
+            display: flex;
+            padding: 5px;
+            border-radius: 5px;
         }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <p>By SVR Robotics Pvt Ltd</p>
+        <p>IP Address: {{ip | safe}}</p>
         <h1>Stewart Platform</h1>
-        <p>IP Address: 192.168.137.120:5000</p>
+        <p>By SVR Robotics Pvt Ltd</p>
     </div>
 
 
@@ -438,10 +630,7 @@
                                         value="0">
                                     <span id="offset_y_value">0</span>
                                 </div>
-                            </form>
-                        </div>
-                        <div>
-                            <form id="control-form-2">
+
                                 <div class="slider-container">
                                     <label class="slider-label" for="offset_z">Offset Z:</label>
                                     <input type="range" id="offset_z" name="offset_z" min="0" max="2" step="0.1"
@@ -454,20 +643,24 @@
                                         value="0">
                                     <span id="rotation_value">0</span>
                                 </div>
-                            </form>
-                            <form id="control-form-3">
-                                <div class="slider-container">
-                                    <label class="slider-label" for="offset_z">P Axis:</label>
-                                    <input type="range" id="offset_p" name="offset_z" min="0" max="2" step="0.1"
-                                        value="0">
-                                    <span id="offset_z_value">0</span>
-                                </div>
-                                <div class="slider-container">
-                                    <label class="slider-label" for="rotation">Yy axis:</label>
-                                    <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5"
-                                        value="0">
-                                    <span id="rotation_value">0</span>
-                                </div>
+
+                        </div>
+                        <div>
+
+
+
+                            <!-- <form id="control-form-3"> -->
+                            <div class="slider-container">
+                                <label class="slider-label" for="offset_z">P Axis:</label>
+                                <input type="range" id="offset_p" name="offset_z" min="0" max="2" step="0.1" value="0">
+                                <span id="offset_z_value">0</span>
+                            </div>
+                            <div class="slider-container">
+                                <label class="slider-label" for="rotation">Yy axis:</label>
+                                <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
+                                <span id="rotation_value">0</span>
+                            </div>
+                            <!-- </form> -->
                             </form>
                         </div>
                     </div>
@@ -482,70 +675,82 @@
                 <div class="slider"><label>ACT 5</label><input type="range" min="0" max="100" value="50"></div>
                 <div class="slider"><label>ACT 6</label><input type="range" min="0" max="100" value="50"></div>
                  -->
-                    <div class="slider-container">
-                        <label class="slider-label" for="rotation">ACT 1:</label>
-                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
-                        <span id="rotation_value">0</span>
-                    </div>
-                    <div class="slider-container">
-                        <label class="slider-label" for="rotation">ACT 1:</label>
-                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
-                        <span id="rotation_value">0</span>
-                    </div>
-                    <div class="slider-container">
-                        <label class="slider-label" for="rotation">ACT 1:</label>
-                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
-                        <span id="rotation_value">0</span>
-                    </div>
-                    <div class="slider-container">
-                        <label class="slider-label" for="rotation">ACT 1:</label>
-                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
-                        <span id="rotation_value">0</span>
-                    </div>
-                    <div class="slider-container">
-                        <label class="slider-label" for="rotation">ACT 1:</label>
-                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
-                        <span id="rotation_value">0</span>
-                    </div>
-                    <div class="slider-container">
-                        <label class="slider-label" for="rotation">ACT 1:</label>
-                        <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
-                        <span id="rotation_value">0</span>
-                    </div>
+                    <form id="actuator_form">
+                        <div class="slider-container">
+                            <label class="slider-label" for="act_1">ACTUATOR 1:</label>
+                            <input type="range" id="act_1" name="act_1" min="0" max="2" step="0.1" value="0">
+                            <span id="act_1_value">0</span>
+                        </div>
+                        <div class="slider-container">
+                            <label class="slider-label" for="act_2">ACTUATOR 2:</label>
+                            <input type="range" id="act_2" name="act_2" min="0" max="2" step="0.1" value="0">
+                            <span id="act_2_value">0</span>
+                        </div>
+                        <div class="slider-container">
+                            <label class="slider-label" for="act_3">ACTUATOR 3:</label>
+                            <input type="range" id="act_3" name="act_3" min="0" max="2" step="0.1" value="0">
+                            <span id="act_3_value">0</span>
+                        </div>
+                        <div class="slider-container">
+                            <label class="slider-label" for="act_4">ACTUATOR 4:</label>
+                            <input type="range" id="act_4" name="act_4" min="0" max="2" step="0.1" value="0">
+                            <span id="act_4_value">0</span>
+                        </div>
+                        <div class="slider-container">
+                            <label class="slider-label" for="act_5">ACTUATOR 5:</label>
+                            <input type="range" id="act_5" name="act_5" min="0" max="2" step="0.1" value="0">
+                            <span id="act_5_value">0</span>
+                        </div>
+                        <div class="slider-container">
+                            <label class="slider-label" for="act_6">ACTUATOR 6:</label>
+                            <input type="range" id="act_6" name="act_6" min="0" max="2" step="0.1" value="0">
+                            <span id="act_6_value">0</span>
+                        </div>
+                    </form>
                 </div>
 
             </div>
             <div class="plus2">
-                <div style="background-color: #55a944; border: 1px black solid;">
+                <div style="background-color: #b5b5b5; border: 1px black solid;">
                     <h3>Drill Gun Control</h3>
                     <label class="switch">
                         <input type="checkbox">
-                        <span class="slider2 round"></span>
+                        <span class="slider2 round" id="dgc"></span>
                     </label>
+                    <h3 style="float: right; margin-top: 5px; margin-right: 30px; color: red; font-weight: bolder;"
+                        id="dgctext">Start</h3>
 
                     <!-- <label class="switch">
                     <input type="checkbox" checked>
                     <span class="slider round"></span>
                   </label> -->
                 </div>
-                <div style="background-color: #3d9e76; border: 1px black solid;">
+                <div style="background-color: #b5b5b5; border: 1px black solid;">
                     <h3>Joystick Control</h3>
                     <label class="switch">
                         <input type="checkbox">
-                        <span class="slider2 round"></span>
+                        <span class="slider2 round" id="jc"></span>
                     </label>
+                    <h3 style="float: right; margin-top: 5px; margin-right: 20px; color: red; font-weight: bolder;"
+                        id="jctext">Start</h3>
                 </div>
 
             </div>
             <div class="plus3">
                 <div class="teach">
-                    <h1>Teach Stewart Platform</h1>
-                    <input type="number" placeholder="From"></input>
-                    <input type="number" placeholder="To"></input>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider2 round"></span>
-                    </label>
+                    <div id="teach1">
+                        <h1>Teach Stewart Platform</h1>
+                        <input type="number" placeholder="From"></input>
+                        <input type="number" placeholder="To"></input>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider2 round"></span>
+                        </label>
+                    </div>
+                    <div id="teach2">
+                        <div><button id="nc">normal Control</button></div>
+                        <div><button id="pc">PID Control</button></div>
+                    </div>
                 </div>
                 <div class="logs">
                     <div class="logsIn">
@@ -553,9 +758,43 @@
                         <p style="color: green; font-weight: bolder;">HEALTHY</p>
                     </div>
                     <div class="logs2">
-                        <div class="social"></div>
-                        <div class="social"></div>
-                        <div class="social"></div>
+                        <div class="social" id="calibration">
+                            <button class="crosshair-button" id="cal">
+                                <div class="outer-circle"></div>
+                                <div class="inner-circle"></div>
+                            </button>
+                            <div>Calibration</div>
+
+                        </div>
+                        <div class="both">
+                            <div class="social" id="soc">
+                                <div class="xyz">
+                                    <div class="connect-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                                            <circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" fill="none">
+                                            </circle>
+                                            <path d="M8 12h4l2-2 2 2-2 2-2-2H8z" fill="white"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="connect-label">Connect</div>
+                                </div>
+
+                            </div>
+                            <div class="social" id="soc2">
+                                <div class="xyz">
+                                    <div class="disconnect-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                                            <circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" fill="none">
+                                            </circle>
+                                            <path d="M8 12h4l2-2m2 2l-2 2" stroke="white" stroke-width="2" fill="none">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="disconnect-label">Disconnected</div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -568,38 +807,47 @@
             <div id="plot-div">
                 {{ plot_div | safe }}
             </div>
-
-            <div class="table-container" style="background-color:rgb(133, 133, 169)">
-                <div class="table-title">AXIS TRAJECTORY</div>
-                <table class="axis-table">
-                    <!-- <thead>
+            <div class="table-container">
+                <div class="table-container2" style="background-color:rgb(133, 133, 169)">
+                    <div class="table-title">AXIS TRAJECTORY</div>
+                    <table class="axis-table">
+                        <!-- <thead>
                         <tr>
                             <th></th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead> -->
-                    <tbody>
-                        <tr>
-                            <td>x</td>
-                            <td></td>
-                            <td>Roll</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>y</td>
-                            <td></td>
-                            <td>Pitch</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>z</td>
-                            <td></td>
-                            <td>Yaw</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <tbody>
+                            <tr>
+                                <td>x</td>
+                                <td></td>
+                                <td>Roll</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>y</td>
+                                <td></td>
+                                <td>Pitch</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>z</td>
+                                <td></td>
+                                <td>Yaw</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="background-color: #d4d4d4;" class="media">
+                <div>
+                    <i class="fa-brands fa-youtube fa-2xl"></i>
+                    <i class="fa-brands fa-instagram fa-2xl"></i>
+                    <i class="fa-regular fa-envelope fa-2xl"></i>
+                </div>
+                <div>© 2025 SVR Robotics Pvt. Ltd. All rights reserved.</div>
             </div>
 
         </div>
@@ -609,23 +857,147 @@
 
     </div>
     <script>
+
+        let dgc = false;
+        let jc = false;
         // Update slider values in real time
         $("input[type='range']").on("input", function () {
+            console.log("value changed");
+
             let id = $(this).attr("id");
+            // console.log("jd:", $("#offset_x_value"));
+            console.log(id);
+
             $("#" + id + "_value").text($(this).val());
         });
 
         // Handle form changes and send AJAX request
-        $("#control-form input, #control-form-2 input").on("input", function () {
-            // Gather form data
-            let formData = $(this).closest("form").serialize();
 
-            // Send AJAX POST request
-            $.post("/update_plot", formData, function (data) {
-                // Replace the plot with the updated one
-                $("#plot-div").html(data.plot_html);
-            });
+        let connected = false;
+
+
+
+        $("#control-form input, #actuator_form input").on("input", function () {
+            // Gather form data
+            if (connected) {
+                console.log("here");
+                let FormData1 = $("#control-form").serialize();
+                let FormData2 = $("#actuator_form").serialize();
+                console.log("1:", FormData1 + FormData2);
+                let FullFormData = FormData1 + "&" + FormData2;
+
+
+                let formData = $(this).closest("form").serialize();
+                console.log("element:", $(this).closest("form"));
+                console.log("formData:", FullFormData);
+
+                console.log(typeof formData);
+
+                // Send AJAX POST request
+                $.post("/update_plot", FullFormData, function (data) {
+                    // Replace the plot with the updated one
+                    $("#plot-div").html(data.plot_html);
+                });
+            } else {
+                alert("Plz connect first")
+                for (let i = 0; i < 12; i++) {
+                    //console.log("s:" , i);
+                    $("input[type='range']")[i].value = 0;
+
+                }
+                let id = $(this).attr("id");
+                // console.log("jd:", $("#offset_x_value"));
+                console.log(id);
+
+                $("#" + id + "_value").text($(this).val());
+            }
         });
+
+
+
+        //Calibration function
+        console.log($('#cal'));
+
+        $("#cal").on('click', function () {
+            console.log("Reseting");
+
+            console.log("jjjhhg", $("input[type='range']")[0])
+            for (let i = 0; i < 12; i++) {
+                console.log("s:", i);
+                $("input[type='range']")[i].value = 0;
+
+            }
+
+            let FormData1 = $("#control-form").serialize();
+            let FormData2 = $("#actuator_form").serialize();
+            console.log("1:", FormData1 + FormData2);
+            let FullFormData = FormData1 + FormData2;
+
+            $.post('/update_plot', FullFormData, function (data) {
+                $('#plot-div').html(data.plot_html);
+            })
+        })
+
+        $('.connect-button').on('click', function () {
+            console.log("connected");
+
+            if (!connected) {
+                connected = true;
+                console.log($('.connect-label').text);
+
+                $('.connect-label').text("Connected")
+                $('.disconnect-label').text("Disconnect")
+                $('.both').css("background-color", "yellowgreen")
+            }
+            else {
+                alert("Already connected..");
+
+            }
+
+        })
+        $('.disconnect-button').on('click', function () {
+            console.log("disconnected");
+
+            if (connected) {
+                connected = false;
+
+
+                $('.disconnect-label').text("Disconnected")
+                $('.connect-label').text("Connect")
+                $('.both').css("background-color", "red")
+            }
+            else {
+
+                alert("Already disconnected..");
+
+            }
+
+        })
+        $('#dgc').on('click', function () {
+            console.log("dgc clicked");
+
+            if (dgc) {
+                dgc = false;
+                $('#dgctext').text("Start");
+            }
+            else {
+                dgc = true;
+                $('#dgctext').text("Stop");
+            }
+        })
+        $('#jc').on('click', function () {
+            console.log("jc clicked");
+
+            if (jc) {
+                jc = false;
+                $('#jctext').text("Start");
+            }
+            else {
+                jc = true;
+                $('#jctext').text("Stop");
+            }
+        })
+
     </script>
 </body>
 
