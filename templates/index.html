@@ -36,7 +36,7 @@
             /* padding: 10px 0; */
             background-color: #333;
             color: white;
-            border-radius: 5px;
+            /* border-radius: 5px; */
             /* margin: 2px; */
 
         }
@@ -239,7 +239,7 @@
         .table-title {
             text-align: center;
             font-weight: bold;
-            padding: 8px;
+            padding: 0px;
             border-bottom: 1px solid black;
         }
 
@@ -251,9 +251,10 @@
 
         .axis-table th,
         .axis-table td {
+            width: 25%;
             border: 1px solid black;
             /* Cell borders */
-            padding: 8px;
+            padding: 5px;
             /* Add some padding to cells */
             text-align: center;
             /* Center text in cells */
@@ -299,7 +300,7 @@
         .teach input {
             text-align: center;
             height: 40px;
-            width: 60px;
+            width: 120px;
             border-radius: 10px;
             background-color: rgb(205, 205, 205);
         }
@@ -595,14 +596,57 @@
             padding: 5px;
             border-radius: 5px;
         }
+
+        .dis {
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            padding: 2px 10px;
+            gap: 10px;
+        }
+
+        #credit {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #popup {
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+        }
     </style>
 </head>
 
 <body>
     <div class="header">
         <p>IP Address: {{ip | safe}}</p>
-        <h1>Stewart Platform</h1>
+        <h1>STEWART PLATFORM</h1>
         <p>By SVR Robotics Pvt Ltd</p>
+
+    </div>
+    <button id="credit">credit</button>
+    <div id="popup" style="display:none;">
+        <h3>SVR Robotics Team:</h3>
+        <a href="https://www.linkedin.com/in/vaibhavchougule475">
+            <p style="font-weight:bold;">Vaibhav Chougule</p>
+        </a>
+        <p style="font-weight:bold;">Ankita Bhosale</p>
+        <p style="font-weight:bold;">Sakshi Ghodke</p>
     </div>
 
 
@@ -615,242 +659,257 @@
                 <div class="container">
                     <!-- Main Control Section -->
                     <div class="main-control">
-                        <div>
-                            <h3>Axis jogging</h3>
-                            <form id="control-form">
-                                <div class="slider-container">
-                                    <label class="slider-label" for="offset_x">Offset X:</label>
-                                    <input type="range" id="offset_x" name="offset_x" min="-0.2" max="0.2" step="0.01"
-                                        value="0">
-                                    <span id="offset_x_value">0</span>
-                                </div>
-                                <div class="slider-container">
-                                    <label class="slider-label" for="offset_y">Offset Y:</label>
-                                    <input type="range" id="offset_y" name="offset_y" min="-0.2" max="0.2" step="0.01"
-                                        value="0">
-                                    <span id="offset_y_value">0</span>
-                                </div>
 
-                                <div class="slider-container">
-                                    <label class="slider-label" for="offset_z">Offset Z:</label>
-                                    <input type="range" id="offset_z" name="offset_z" min="0" max="2" step="0.1"
-                                        value="0">
-                                    <span id="offset_z_value">0</span>
-                                </div>
-                                <div class="slider-container">
-                                    <label class="slider-label" for="rotation">Rotation (°):</label>
-                                    <input type="range" id="rotation" name="rotation" min="0" max="360" step="5"
-                                        value="0">
-                                    <span id="rotation_value">0</span>
-                                </div>
-
-                        </div>
-                        <div>
-
-
-
-                            <!-- <form id="control-form-3"> -->
+                        <h3>Axis jogging</h3>
+                        <form id="control-form">
                             <div class="slider-container">
-                                <label class="slider-label" for="offset_z">P Axis:</label>
-                                <input type="range" id="offset_p" name="offset_z" min="0" max="2" step="0.1" value="0">
+                                <label class="slider-label" for="offset_x">Offset X:</label>
+                                <input type="range" id="offset_x" name="offset_x" min="-500" max="500" step="50"
+                                    value="0">
+                                <span id="offset_x_value">0</span>
+                            </div>
+                            <div class="slider-container">
+                                <label class="slider-label" for="offset_y">Offset Y:</label>
+                                <input type="range" id="offset_y" name="offset_y" min="-500" max="500" step="50"
+                                    value="0">
+                                <span id="offset_y_value">0</span>
+                            </div>
+
+                            <div class="slider-container">
+                                <label class="slider-label" for="offset_z">Offset Z:</label>
+                                <input type="range" id="offset_z" name="offset_z" min="0" max="450" step="50" value="0">
                                 <span id="offset_z_value">0</span>
                             </div>
                             <div class="slider-container">
-                                <label class="slider-label" for="rotation">Yy axis:</label>
-                                <input type="range" id="offset_yy" name="rotation" min="0" max="360" step="5" value="0">
-                                <span id="rotation_value">0</span>
+                                <label class="slider-label" for="offset_yy">Roll:</label>
+                                <input type="range" id="offset_yy" name="roll" min="-100" max="100" step="5" value="0">
+                                <span id="offset_yy_value">0</span>
                             </div>
-                            <!-- </form> -->
-                            </form>
-                        </div>
+
+
+                            <div>
+
+
+
+                                <!-- <form id="control-form-3"> -->
+                                <div class="slider-container">
+                                    <label class="slider-label" for="offset_p">Pitch:</label>
+                                    <input type="range" id="offset_p" name="pitch" min="-100" max="100" step="5"
+                                        value="0">
+                                    <span id="offset_p_value">0</span>
+                                </div>
+
+                                <div class="slider-container">
+                                    <label class="slider-label" for="rotation">Yaw (°):</label>
+                                    <input type="range" id="rotation" name="rotation" min="-0.8hui" max="0.8" step="0.1"
+                                        value="0">
+                                    <span id="rotation_value">0</span>
+                                </div>
+                                <!-- </form> -->
+                        </form>
                     </div>
                 </div>
-                <!-- Actuator Control Section -->
-                <div class="section ActuatorControl">
-                    <h3>Actuator Control</h3>
-                    <!-- <div class="slider"><label>ACT 1</label><input type="range" min="0" max="100" value="50"></div>
+            </div>
+            <!-- Actuator Control Section -->
+            <div class="section ActuatorControl">
+                <h3>Actuator Control</h3>
+                <!-- <div class="slider"><label>ACT 1</label><input type="range" min="0" max="100" value="50"></div>
                 <div class="slider"><label>ACT 2</label><input type="range" min="0" max="100" value="50"></div>
                 <div class="slider"><label>ACT 3</label><input type="range" min="0" max="100" value="50"></div>
                 <div class="slider"><label>ACT 4</label><input type="range" min="0" max="100" value="50"></div>
                 <div class="slider"><label>ACT 5</label><input type="range" min="0" max="100" value="50"></div>
                 <div class="slider"><label>ACT 6</label><input type="range" min="0" max="100" value="50"></div>
                  -->
-                    <form id="actuator_form">
-                        <div class="slider-container">
-                            <label class="slider-label" for="act_1">ACTUATOR 1:</label>
-                            <input type="range" id="act_1" name="act_1" min="0" max="2" step="0.1" value="0">
-                            <span id="act_1_value">0</span>
-                        </div>
-                        <div class="slider-container">
-                            <label class="slider-label" for="act_2">ACTUATOR 2:</label>
-                            <input type="range" id="act_2" name="act_2" min="0" max="2" step="0.1" value="0">
-                            <span id="act_2_value">0</span>
-                        </div>
-                        <div class="slider-container">
-                            <label class="slider-label" for="act_3">ACTUATOR 3:</label>
-                            <input type="range" id="act_3" name="act_3" min="0" max="2" step="0.1" value="0">
-                            <span id="act_3_value">0</span>
-                        </div>
-                        <div class="slider-container">
-                            <label class="slider-label" for="act_4">ACTUATOR 4:</label>
-                            <input type="range" id="act_4" name="act_4" min="0" max="2" step="0.1" value="0">
-                            <span id="act_4_value">0</span>
-                        </div>
-                        <div class="slider-container">
-                            <label class="slider-label" for="act_5">ACTUATOR 5:</label>
-                            <input type="range" id="act_5" name="act_5" min="0" max="2" step="0.1" value="0">
-                            <span id="act_5_value">0</span>
-                        </div>
-                        <div class="slider-container">
-                            <label class="slider-label" for="act_6">ACTUATOR 6:</label>
-                            <input type="range" id="act_6" name="act_6" min="0" max="2" step="0.1" value="0">
-                            <span id="act_6_value">0</span>
-                        </div>
-                    </form>
-                </div>
-
+                <form id="actuator_form">
+                    <div class="slider-container">
+                        <label class="slider-label" for="act_1">ACTUATOR 1:</label>
+                        <input type="range" id="act_1" name="act_1" min="0" max="100" step="10" value="0">
+                        <span id="act_1_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="act_2">ACTUATOR 2:</label>
+                        <input type="range" id="act_2" name="act_2" min="0" max="100" step="10" value="0">
+                        <span id="act_2_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="act_3">ACTUATOR 3:</label>
+                        <input type="range" id="act_3" name="act_3" min="0" max="100" step="10" value="0">
+                        <span id="act_3_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="act_4">ACTUATOR 4:</label>
+                        <input type="range" id="act_4" name="act_4" min="0" max="100" step="10" value="0">
+                        <span id="act_4_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="act_5">ACTUATOR 5:</label>
+                        <input type="range" id="act_5" name="act_5" min="0" max="100" step="10" value="0">
+                        <span id="act_5_value">0</span>
+                    </div>
+                    <div class="slider-container">
+                        <label class="slider-label" for="act_6">ACTUATOR 6:</label>
+                        <input type="range" id="act_6" name="act_6" min="0" max="100" step="10" value="0">
+                        <span id="act_6_value">0</span>
+                    </div>
+                </form>
             </div>
-            <div class="plus2">
-                <div style="background-color: #b5b5b5; border: 1px black solid;">
-                    <h3>Drill Gun Control</h3>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider2 round" id="dgc"></span>
-                    </label>
-                    <h3 style="float: right; margin-top: 5px; margin-right: 30px; color: red; font-weight: bolder;"
-                        id="dgctext">Start</h3>
 
-                    <!-- <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                  </label> -->
-                </div>
-                <div style="background-color: #b5b5b5; border: 1px black solid;">
-                    <h3>Joystick Control</h3>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider2 round" id="jc"></span>
-                    </label>
-                    <h3 style="float: right; margin-top: 5px; margin-right: 20px; color: red; font-weight: bolder;"
-                        id="jctext">Start</h3>
-                </div>
-
-            </div>
-            <div class="plus3">
-                <div class="teach">
-                    <div id="teach1">
-                        <h1>Teach Stewart Platform</h1>
-                        <input type="number" placeholder="From"></input>
-                        <input type="number" placeholder="To"></input>
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider2 round"></span>
-                        </label>
-                    </div>
-                    <div id="teach2">
-                        <div><button id="nc">normal Control</button></div>
-                        <div><button id="pc">PID Control</button></div>
-                    </div>
-                </div>
-                <div class="logs">
-                    <div class="logsIn">
-                        <h2>ERROR LOGS: </h2>
-                        <p style="color: green; font-weight: bolder;">HEALTHY</p>
-                    </div>
-                    <div class="logs2">
-                        <div class="social" id="calibration">
-                            <button class="crosshair-button" id="cal">
-                                <div class="outer-circle"></div>
-                                <div class="inner-circle"></div>
-                            </button>
-                            <div>Calibration</div>
-
-                        </div>
-                        <div class="both">
-                            <div class="social" id="soc">
-                                <div class="xyz">
-                                    <div class="connect-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                            <circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" fill="none">
-                                            </circle>
-                                            <path d="M8 12h4l2-2 2 2-2 2-2-2H8z" fill="white"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="connect-label">Connect</div>
-                                </div>
-
-                            </div>
-                            <div class="social" id="soc2">
-                                <div class="xyz">
-                                    <div class="disconnect-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                            <circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" fill="none">
-                                            </circle>
-                                            <path d="M8 12h4l2-2m2 2l-2 2" stroke="white" stroke-width="2" fill="none">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="disconnect-label">Disconnected</div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
-
-
-
-        <div class="right">
-            <div id="plot-div">
-                {{ plot_div | safe }}
+        <div class="plus2">
+            <div style="background-color: #b5b5b5; border: 1px black solid;">
+                <h3>Drill Gun Control</h3>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider2 round" id="dgc"></span>
+                </label>
+                <h3 style="float: right; margin-top: 5px; margin-right: 30px; color: red; font-weight: bolder;"
+                    id="dgctext">Start</h3>
             </div>
-            <div class="table-container">
-                <div class="table-container2" style="background-color:rgb(133, 133, 169)">
-                    <div class="table-title">AXIS TRAJECTORY</div>
-                    <table class="axis-table">
-                        <!-- <thead>
+            <div style="background-color: #b5b5b5; border: 1px black solid;">
+                <h3>Wave Action</h3>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider2 round" id="wa"></span>
+                </label>
+                <h3 style="float: right; margin-top: 5px; margin-left: 10px; color: red; font-weight: bolder;"
+                    id="watext">Start</h3>
+            </div>
+            <div style="background-color: #b5b5b5; border: 1px black solid;">
+                <h3>Joystick Control</h3>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider2 round" id="jc"></span>
+                </label>
+                <h3 style="float: right; margin-top: 5px; margin-right: 20px; color: red; font-weight: bolder;"
+                    id="jctext">Start</h3>
+            </div>
+
+        </div>
+        <div class="plus3">
+            <div class="teach">
+                <div id="teach1">
+                    <h1>Teach Stewart Platform</h1>
+
+                    <input type="number" max="430" placeholder="Ending Point" id="end"></input>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider2 round" id="teach"></span>
+                    </label>
+                </div>
+                <div id="teach2">
+                    <div><button id="nc">normal Control</button></div>
+                    <div><button id="pc">PID Control</button></div>
+                </div>
+            </div>
+            <div class="logs">
+                <div class="logsIn">
+                    <h2>ERROR LOGS: </h2>
+                    <p style="color: green; font-weight: bolder;" id="err">HEALTHY</p>
+                </div>
+                <div class="logs2">
+                    <div class="social" id="calibration">
+                        <button class="crosshair-button" id="cal">
+                            <div class="outer-circle"></div>
+                            <div class="inner-circle"></div>
+                        </button>
+                        <div>Homing</div>
+
+                    </div>
+                    <div class="both">
+                        <div class="social" id="soc">
+                            <div class="xyz">
+                                <div class="connect-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                                        <circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" fill="none">
+                                        </circle>
+                                        <path d="M8 12h4l2-2 2 2-2 2-2-2H8z" fill="white"></path>
+                                    </svg>
+                                </div>
+                                <div class="connect-label">Connect</div>
+                            </div>
+
+                        </div>
+                        <div class="social" id="soc2">
+                            <div class="xyz">
+                                <div class="disconnect-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                                        <circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" fill="none">
+                                        </circle>
+                                        <path d="M8 12h4l2-2m2 2l-2 2" stroke="white" stroke-width="2" fill="none">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="disconnect-label">Disconnected</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="right">
+        <div id="plot-div">
+            {{ plot_div | safe }}
+        </div>
+        <div class="dis">
+            <label for="distance">Distance:</label>
+            <input type="number" name="" id="distance" placeholder="0" readonly>
+            <button id="reflect" style="background-color: red;">Reflect</button>
+
+        </div>
+        <div class="table-container">
+            <div class="table-container2" style="background-color:rgb(133, 133, 169)">
+                <div class="table-title">AXIS TRAJECTORY</div>
+                <table class="axis-table">
+                    <!-- <thead>
                         <tr>
                             <th></th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead> -->
-                        <tbody>
-                            <tr>
-                                <td>x</td>
-                                <td></td>
-                                <td>Roll</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>y</td>
-                                <td></td>
-                                <td>Pitch</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>z</td>
-                                <td></td>
-                                <td>Yaw</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <tbody>
+                        <tr>
+                            <td>x</td>
+                            <td id="x"></td>
+                            <td>Roll</td>
+                            <td id="roll"></td>
+                        </tr>
+                        <tr>
+                            <td>y</td>
+                            <td id="y"></td>
+                            <td>Pitch</td>
+                            <td id="pitch"></td>
+                        </tr>
+                        <tr>
+                            <td>z</td>
+                            <td id="z"></td>
+                            <td>Yaw</td>
+                            <td id="yaw"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div style="background-color: #d4d4d4;" class="media">
-                <div>
-                    <i class="fa-brands fa-youtube fa-2xl"></i>
-                    <i class="fa-brands fa-instagram fa-2xl"></i>
-                    <i class="fa-regular fa-envelope fa-2xl"></i>
-                </div>
-                <div>© 2025 SVR Robotics Pvt. Ltd. All rights reserved.</div>
-            </div>
-
         </div>
+        <div style="background-color: #d4d4d4;" class="media">
+            <div>
+                <a href="https://www.facebook.com/svrrobotics?mibextid=ZbWKwL"><i
+                        class="fa-brands fa-facebook fa-2xl"></i></a>
+                <a href="https://www.youtube.com/@svrrobotics100"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+                <a href="https://www.instagram.com/_____svr.robotics/#"><i
+                        class="fa-brands fa-instagram fa-2xl"></i></a>
+                <a href="mailto:support@svrrobotics.com"><i class="fa-regular fa-envelope fa-2xl"></i></a>
+
+            </div>
+            <div>SVR Robotics Pvt. Ltd. All rights reserved.</div>
+        </div>
+
+    </div>
 
 
 
@@ -860,16 +919,45 @@
 
         let dgc = false;
         let jc = false;
+        let nc = false;
+        let pc = false;
+        let teaching = false;
+        let reflect = false;
+        let wa =false;
         // Update slider values in real time
         $("input[type='range']").on("input", function () {
             console.log("value changed");
 
+            if ($(this).attr("id") === "offset_z") {
+                let id = $(this).attr("id");
+                $("#" + id + "_value").text($(this).val());
+                return;
+            }
+
             let id = $(this).attr("id");
             // console.log("jd:", $("#offset_x_value"));
             console.log(id);
+            let maxValue = $(this).attr("max");
+            let val = Math.floor((($(this).val()) / maxValue) * 100) + "%";
+            console.log("jglkdha:", val);
 
-            $("#" + id + "_value").text($(this).val());
+            $("#" + id + "_value").text(val);
         });
+        //credit 
+
+        $(document).ready(function () {
+            $('#credit').click(function () {
+                $('#popup').fadeIn();
+            });
+
+            // Optional: Hide the popup after a few seconds or when clicked outside
+            $(document).click(function (event) {
+                if (!$(event.target).closest('#popup, #credit').length) {
+                    $('#popup').fadeOut();
+                }
+            });
+        });
+
 
         // Handle form changes and send AJAX request
 
@@ -879,6 +967,8 @@
 
         $("#control-form input, #actuator_form input").on("input", function () {
             // Gather form data
+            console.log("sending req");
+
             if (connected) {
                 console.log("here");
                 let FormData1 = $("#control-form").serialize();
@@ -920,7 +1010,9 @@
 
         $("#cal").on('click', function () {
             console.log("Reseting");
-
+            $.post('/calibrate', function (data) {
+                console.log("data:", data);
+            })
             console.log("jjjhhg", $("input[type='range']")[0])
             for (let i = 0; i < 12; i++) {
                 console.log("s:", i);
@@ -931,16 +1023,26 @@
             let FormData1 = $("#control-form").serialize();
             let FormData2 = $("#actuator_form").serialize();
             console.log("1:", FormData1 + FormData2);
-            let FullFormData = FormData1 + FormData2;
+            let FullFormData = FormData1 + "&" + FormData2;
 
             $.post('/update_plot', FullFormData, function (data) {
                 $('#plot-div').html(data.plot_html);
             })
+            $('.slider-container span').text(0);
+        })
+
+        //roll 
+        $('#offset_yy').on('input', function () {
+            console.log("roll changed");
+
+
         })
 
         $('.connect-button').on('click', function () {
             console.log("connected");
-
+            $.post('/connect', function (data) {
+                console.log("data:", data);
+            })
             if (!connected) {
                 connected = true;
                 console.log($('.connect-label').text);
@@ -957,7 +1059,9 @@
         })
         $('.disconnect-button').on('click', function () {
             console.log("disconnected");
-
+            $.post('/disconnect', function (data) {
+                console.log("data:", data);
+            })
             if (connected) {
                 connected = false;
 
@@ -979,24 +1083,244 @@
             if (dgc) {
                 dgc = false;
                 $('#dgctext').text("Start");
+                let FormData1 = $("#control-form").serialize();
+                let FormData2 = $("#actuator_form").serialize();
+                console.log("1:", FormData1 + FormData2);
+                let FullFormData = FormData1 + "&" + FormData2 + "&" + `dgc=False`;
+                console.log("with drill:", FullFormData);
+                $.post('/update_plot', FullFormData, function (data) {
+                    $('#plot-div').html(data.plot_html);
+                })
+                $.post('/update_dgc' , 'dgc=False' , function(data){
+                    console.log("data:", data);
+                })
             }
             else {
                 dgc = true;
                 $('#dgctext').text("Stop");
+                let FormData1 = $("#control-form").serialize();
+                let FormData2 = $("#actuator_form").serialize();
+                console.log("1:", FormData1 + FormData2);
+                let FullFormData = FormData1 + "&" + FormData2 + "&" + `dgc=True`;
+                console.log("with drill:", FullFormData);
+
+                $.post('/update_plot', FullFormData, function (data) {
+                    $('#plot-div').html(data.plot_html);
+                })
+                $.post('/update_dgc' , 'dgc=True' , function(data){
+                    console.log("data:", data);
+                })
             }
         })
+
+        $('#wa').on('click', function(){
+            
+            if(wa){
+                wa = false;
+                $('#watext').text("Start");
+                $.post('/wave_action', 'wa=False', function(data){
+                console.log("data:", data);
+            })
+            }
+            else{
+                wa = true;
+                $('#watext').text("Stop");
+                $.post('/wave_action', 'wa=True', function(data){
+                console.log("data:", data);
+            })
+            }
+           
+        })
+        let intervalId;
         $('#jc').on('click', function () {
             console.log("jc clicked");
-
+            
             if (jc) {
                 jc = false;
+                // clearInterval(intervalId);
                 $('#jctext').text("Start");
+                $.post('/joystick_control', 'jc=False', function (data) {
+                console.log("data:", data);
+            })
+                // intervalId = null;
             }
             else {
                 jc = true;
                 $('#jctext').text("Stop");
+                $.post('/joystick_control', 'jc=True', function (data) {
+                console.log("data:", data);
+            })
+                // intervalId = setInterval(fetchAndUpdatePlot, 2000);
+                // fetchAndUpdatePlot();
             }
         })
+
+
+        $('#teach').on('click', function () {
+            console.log("teach clicked");
+            
+
+            if (teaching) {
+                teaching = false;
+                $('#teach').css("background-color", "red");
+                // $('#end').value();
+                console.log("end:", $('#end').val());
+                $.post('/teach', 'teach=False', function (data) {
+                console.log("data:", data);
+            })
+                // alert("Teaching OFF");
+            }
+            else {
+                teaching = true;
+                $('#teach').css("background-color", "green");
+                
+                let d = 'teach=True&end=' + $('#end').val();
+                $.post('/teach', d, function (data) {
+                console.log("data:", data);
+            })
+                // alert("Teaching ON");
+            }
+        })
+
+        $('#nc').on('click', function () {
+            console.log("nc clicked");
+            
+            if (teaching) {
+                if (nc) {
+                    nc = false;
+                    $('#nc').css("background-color", "red");
+                    $('#pc').css("background-color", "green");
+                    $.post('/normal_control','nc=False' , function (data) {
+                    console.log("data:", data);
+            })
+                    alert("Normal Control OFF");
+                }
+                else {
+                    nc = true;
+                    $('#nc').css("background-color", "green");
+                    $('#pc').css("background-color", "red");
+                    $.post('/normal_control','nc=True' , function (data) {
+                    console.log("data:", data);
+            })
+                    alert("Normal Control ON");
+                }
+            }
+
+
+
+        })
+
+        $('#pc').on('click', function () {
+            console.log("pc clicked");
+            
+            if (teaching) {
+                if (pc) {
+                    pc = false;
+                    $('#pc').css("background-color", "red");
+                    $('#nc').css("background-color", "green");
+                    $.post('/pid_control','pc=True', function (data) {
+                    console.log("data:", data);
+            })
+                    alert("PID Control OFF");
+                }
+                else {
+                    pc = true;
+                    $('#pc').css("background-color", "green");
+                    $('#nc').css("background-color", "red");
+                    $.post('/pid_control','pc=True', function (data) {
+                console.log("data:", data);
+            })
+                    alert("PID controll ON");
+                }
+            }
+        })
+        function reflectIt(){
+            $.get('/get_coordinates', function (data) {
+                    console.log("data:", data.coordinates);
+                    $('#x').text(data.coordinates[0]);
+                    $('#y').text(data.coordinates[1]);
+                    $('#z').text(data.coordinates[2]);
+                    $('#roll').text(data.coordinates[3]);
+                    $('#pitch').text(data.coordinates[4]);
+                    $('#yaw').text(data.coordinates[5]);
+                    let newData = `offset_x=${data.coordinates[0]}&offset_y=${data.coordinates[1]}&offset_z=${data.coordinates[2]}&roll=${data.coordinates[3]}&pitch=${data.coordinates[4]}&rotation=${data.coordinates[5]}`;
+                    if(reflect){
+
+                        $.post('/update_plot', newData, function (data) {
+                            $('#plot-div').html(data.plot_html);
+                        })
+                    }
+
+                })
+        }
+        intervalId = setInterval(reflectIt, 1000);
+        //Axis Trajectory control
+        $('#reflect').on('click', function () {
+            if (reflect) {
+                reflect = false;
+                this.style.backgroundColor = "red";
+                clearInterval(intervalId);
+            }
+            else {
+                reflect = true;
+                this.style.backgroundColor = "green";
+                
+                
+            }
+        })
+
+
+        $.get('/get_distance', function (data) {
+            console.log("distance:", data.distance);
+            $('#distance').val(data.distance);
+        })
+
+        $.get('/get_logs', function (data) {
+            console.log("error:", data.logs);
+            $('#err').text(data.logs);
+        })
+
+        $('#end').on('input', function () {
+            if ($(this).val() > 430) {
+                alert("Value should be less than 430");
+                $(this).val(430);
+            }
+        })
+
+        function fetchValue() {
+            $.get('/get-value', function (data) {
+                console.log("value fetching");
+                console.log(data.value);
+
+                $('#display').text(data.value); // Update the <p> element with the fetched value
+            }).fail(function () {
+                console.error("Error fetching value from the server.");
+            });
+        }
+
+        // Poll the server every 1 second
+        // setInterval(fetchValue, 3000);
+        function fetchAndUpdatePlot() {
+
+            $.get("/update_from_serial", function (data) {
+                if (data.plot_html) {
+                    console.log("herereeererere");
+
+                    $("#plot-div").html(data.plot_html);  // Update the plot
+                }
+            });
+
+            // $.get("/update_from_serial", function (data) {
+            //     if (data.plot_html) {
+            //         console.log("herereeererere");
+
+            //         $("#plot-div").html(data.plot_html);  // Update the plot
+            //     }
+            // });
+        }
+
+
+
 
     </script>
 </body>
